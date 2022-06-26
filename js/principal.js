@@ -3,49 +3,49 @@ var titulo = document.querySelector("h1");
 titulo.textContent = "Jussilene Nutricionista";
 
 
-var paciente = document.querySelector("#primeiro-paciente");
+var pacientes = document.querySelectorAll(".paciente");
 
-var tdPeso = paciente.querySelector(".info-peso");
-var peso = tdPeso.textContent;
+for (var i = 0; i < pacientes.length; i++) {
 
-var tdAltura = paciente.querySelector(".info-altura");
-var altura = tdAltura.textContent;
+    var paciente = pacientes[i];
+    
+    var tdPeso = paciente.querySelector(".info-peso");
+    var peso = tdPeso.textContent;
 
-var tdImc = paciente.querySelector(".info-imc");
+    var tdAltura = paciente.querySelector(".info-altura");
+    var altura = tdAltura.textContent;
 
-var pesoEhValido = true;
-var alturaEhValida = true;
+    var tdImc = paciente.querySelector(".info-imc");
 
-if(peso <= 0 || peso >= 1000) {
-    console.log("Peso Inválido!");
-    pesoEhValido = false;
-    tdImc.textContent = "Peso Inválido";
+    var pesoEhValido = true;
+    var alturaEhValida = true;
+
+    if(peso <= 0 || peso >= 1000) {
+        console.log("Peso Inválido!");
+        pesoEhValido = false;
+        tdImc.textContent = "Peso Inválido";
+        paciente.classList.add("paciente-invalido");
+    }
+
+    if(altura <= 0 || altura >= 3.00) {
+        console.log("Peso Inválido!");
+        pesoEhValido = false;
+        tdImc.textContent = "Peso Inválido";
+        paciente.classList.add("paciente-invalido");
+    }
+
+    if(alturaEhValida && pesoEhValido) {
+        var imc = peso / (altura * altura);
+        tdImc.textContent = imc.toFixed(2);
+    }
+
 }
 
-if(altura <= 0 || altura >= 3.00) {
-    console.log("Peso Inválido!");
-    pesoEhValido = false;
-    tdImc.textContent = "Peso Inválido";
-}
-
-if(alturaEhValida && pesoEhValido) {
-    var imc = peso / (altura * altura);
-    tdImc.textContent = imc;
-}
-
-
-
-
-
-
-
-
-
-/*var botaoAdicionar = document.querySelector("#adicionar-paciente");
+var botaoAdicionar = document.querySelector("#adicionar-paciente");
 botaoAdicionar.addEventListener("click",function(event){
     event.preventDefault();
 
-    var form = document.querySelector("form-adiciona");
+    var form = document.querySelector("#form-adiciona");
 
     var nome = form.nome.value;
     var peso = form.peso.value;
@@ -74,4 +74,4 @@ botaoAdicionar.addEventListener("click",function(event){
 
     tabela.appendChild(pacienteTr);
 
-})*/
+})
